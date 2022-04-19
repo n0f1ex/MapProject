@@ -52,7 +52,7 @@ public class WikiActivity extends AppCompatActivity {
                         intent.putExtra("dict", "Батарейки");
                         break;
                     case 1:
-                        intent.putExtra("dict", "Дерево");
+                        intent.putExtra("dict", "Дерево и органические материалы");
                         break;
                     case 2:
                         intent.putExtra("dict", "Стекло");

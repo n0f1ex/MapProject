@@ -15,6 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.UiSettings;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,6 +30,7 @@ public class Dictionary extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);
+
         ListView listView = findViewById(R.id.listView2);
 
 // определяем строковый массив
@@ -66,6 +69,11 @@ public class Dictionary extends AppCompatActivity {
                         "54.7534171/// 55.9618593/// "+
                         "ул. Генерала Горбатова, 3/1А/// "+
                         "54.7183901/// 56.0077294/// ";
+                Names = new String[]{"Виды органических материалов:",
+                        "Дерево",
+                        "Пробка",
+                        "Хлопок",
+                        "Джутовое волокно(мешки, канаты)"};
                 break;
             case "Стекло":
                 filis = "ул. Комсомольская, 167/1/// "+
