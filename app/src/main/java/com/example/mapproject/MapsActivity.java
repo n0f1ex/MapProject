@@ -71,7 +71,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.mapmenu, menu);
         return true;
     }
 
@@ -85,6 +85,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Intent intent = new Intent(MapsActivity.this, WikiActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.changemap:
+                switch(mMap.getMapType()){
+                    case GoogleMap.MAP_TYPE_NORMAL:
+                        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                        return true;
+                    case GoogleMap.MAP_TYPE_SATELLITE:
+                        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                        return true;
+                    case GoogleMap.MAP_TYPE_TERRAIN:
+                        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                        return true;
+                }
             case R.id.exit:
                 finish();
         }
