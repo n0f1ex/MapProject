@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +35,7 @@ public class Dictionary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);
 
-        ListView listView = findViewById(R.id.listView2);
+        ListView listView = findViewById(R.id.listView);
 
 // определяем строковый массив
         Bundle arguments = getIntent().getExtras();
@@ -146,21 +150,13 @@ public class Dictionary extends AppCompatActivity {
         return true;
     }
 
-    /*@NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        LayoutInflater inflater = getLayoutInflater();
-        View row = inflater.inflate(R.layout.list_item, parent, false);
-        TextView label = (TextView) row.findViewById(R.id.text_view_zodiac);
-        label.setText(mZodiacSigns[position]);
-        ImageView iconImageView = (ImageView) row.findViewById(R.id.image_view_icon);
-        // Если текст содержит кота, то выводим значок Льва (лев - это кот!)
-        if (mZodiacSigns[position].equalsIgnoreCase("Лев")) {
-            iconImageView.setImageResource(R.drawable.lion);
-        } else {
-            iconImageView.setImageResource(R.mipmap.ic_launcher);
+    /*private class CodeAdapter extends ArrayAdapter<String> {
+
+        CodeAdapter(Context context, int textViewResourceId,
+                      String[] objects) {
+            super(context, textViewResourceId, objects);
+
         }
-        return row;
     }*/
 
     @Override
