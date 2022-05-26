@@ -35,9 +35,9 @@ public class WikiActivity extends AppCompatActivity {
 
 // определяем строковый массив
         String filename = "materials.txt";
-        String text = readFile(filename);
+        String text = getResources().getString(R.string.resources);
 // используем адаптер данных
-        final String[] Names = {"Батарейки", "Дерево", "Стекло", "Макулатура", "Пластик", "Ртутосодержащие предметы", "Металлы"};
+        final String[] Names = text.split("///");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, Names);
 
@@ -115,14 +115,14 @@ public class WikiActivity extends AppCompatActivity {
 
     private String readFile(String fileName) {
         /*
-         * Аналогично создается объект файла
+         * Создается объект файла
          */
         StringBuilder stringBuilder = new StringBuilder();
         File myFile = new File(Environment.getExternalStorageDirectory().toString() + "/" + fileName);
         try {
             FileInputStream inputStream = new FileInputStream(myFile);
             /*
-             * Буфферезируем данные из выходного потока файла
+             * Буфферизируем данные из выходного потока файла
              */
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             /*
@@ -132,10 +132,10 @@ public class WikiActivity extends AppCompatActivity {
             try {
                 /*
                  * Производим построчное считывание данных из файла в конструктор строки,
-                 * Псоле того, как данные закончились, производим вывод текста в TextView
+                 * После того, как данные закончились, производим вывод текста в TextView
                  */
                 while ((line = bufferedReader.readLine()) != null){
-                    stringBuilder.append(line + "123321");
+                    stringBuilder.append(line + "///");
                 }
             } catch (IOException e) {
                 e.printStackTrace();

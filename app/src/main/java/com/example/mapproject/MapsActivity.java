@@ -52,7 +52,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Bundle arguments = getIntent().getExtras();
         String name = arguments.get("map").toString();
         if (!name.matches("///")){
-            String[] str = name.split("/// ");
+            String[] str = name.split("///");
             double a, b;
             String c;
             String s;
@@ -71,6 +71,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(54.7985226,56.0397862), 11.0f));
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                switch (mMap.getMapType()) {
+                    case GoogleMap.MAP_TYPE_NORMAL:
+                        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                        return;
+                    case GoogleMap.MAP_TYPE_SATELLITE:
+                        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                        return;
+                    case GoogleMap.MAP_TYPE_TERRAIN:
+                        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                        return;
+                }
+            }
+        });
     }
 
 
@@ -92,18 +108,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Intent intent = new Intent(MapsActivity.this, WikiActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.changemap:
-                switch(mMap.getMapType()){
-                    case GoogleMap.MAP_TYPE_NORMAL:
-                        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-                        return true;
-                    case GoogleMap.MAP_TYPE_SATELLITE:
-                        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-                        return true;
-                    case GoogleMap.MAP_TYPE_TERRAIN:
-                        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                        return true;
-                }
             case R.id.exit:
                 finish();
         }
